@@ -3,48 +3,58 @@ import "./App.css";
 
 function App() {
   const [list, setList] = useState<string[]>([]);
+  const listList = [
+    { "Job Search": ["make a resume", "apply to jobs", "do interviews"] },
+    { Programming: ["learn Next", "try SQL", "finish task project"] },
+    { Personal: ["shave", "mow lawn", "clean room"] },
+  ];
   return (
     <div className="App">
       <header className="App-header">
         <div style={{ display: "flex" }}>
           <div style={{ margin: "30px" }}>
-            Main List (Today)
+            <h2>Main List (Today)</h2>
             <ul>
               {list.map((item, index) => (
-                <li key={index}>{item}</li>
+                <div key={index} style={{ display: "flex" }}>
+                  <li
+                    onClick={() =>
+                      setList((prevList) =>
+                        prevList.filter((itemToRemove) => item !== itemToRemove)
+                      )
+                    }
+                  >
+                    {item}
+                  </li>
+                  <input type="checkbox" />
+                </div>
               ))}
             </ul>
           </div>
-          <div style={{ margin: "30px" }}>
-            Job Search
-            <ul>
-              <li
-                onClick={(e) => {
-                  const text = (e.target as HTMLElement).textContent || "";
-                  setList((p) => [...p, text]);
-                }}
-              >
-                item 1
-              </li>
-              <li>item 2</li>
-              <li>item 3</li>
-            </ul>
-          </div>
-          <div style={{ margin: "30px" }}>
-            Programming
-            <ul>
-              <li>item 4</li>
-              <li>item 5</li>
-              <li>item 6</li>
-            </ul>
-          </div>
-          <div style={{ margin: "30px" }}>
-            Personal
-            <ul>
-              <li>item 7</li>
-              <li>item 8</li>
-              <li>item 9</li>
-            </ul>
+
+          <div style={{ display: "flex" }}>
+            {listList.map((listObj, index) => (
+              <div key={index} style={{ margin: "30px" }}>
+                <h3>{Object.keys(listObj)[0]}</h3>
+                <ol>
+                  {Object.values(listObj)[0].map(
+                    (tasklist: string[], index: number) => (
+                      <li
+                        key={index}
+                        onClick={(e) => {
+                          const text =
+                            (e.target as HTMLElement).textContent || "";
+                          if (!list.includes(text))
+                            setList((p) => [...p, text]);
+                        }}
+                      >
+                        {tasklist}
+                      </li>
+                    )
+                  )}
+                </ol>
+              </div>
+            ))}
           </div>
         </div>
       </header>
