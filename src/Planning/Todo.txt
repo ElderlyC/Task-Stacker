@@ -1,4 +1,8 @@
 Specifications
+-what do i want to accomplish in the end
+--what are the features i need for this
+--what does it need for me to want to use it?
+-limit the amount of tasks in front of user to avoid overwhelm
 Pages
 Components
 Etc.

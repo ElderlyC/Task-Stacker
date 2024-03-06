@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import SubList from "./Components/SubList";
 
 function App() {
   const [list, setList] = useState<string[]>([]);
@@ -26,7 +27,7 @@ function App() {
                   >
                     {item}
                   </li>
-                  <input type="checkbox" />
+                  {/* <input type="checkbox" /> */}
                 </div>
               ))}
             </ul>
@@ -55,6 +56,7 @@ function App() {
                 </ol>
               </div>
             ))}
+            <SubList />
           </div>
         </div>
       </header>
