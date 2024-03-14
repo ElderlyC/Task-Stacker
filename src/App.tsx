@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import SubList from "./Components/SubList";
+import HabitCalendar from "./Components/HabitCalendar";
 
 function App() {
   const [list, setList] = useState<string[]>([]);
@@ -32,31 +33,35 @@ function App() {
               ))}
             </ul>
           </div>
-
-          <div style={{ display: "flex" }}>
-            {listList.map((listObj, index) => (
-              <div key={index} style={{ margin: "30px" }}>
-                <h3>{Object.keys(listObj)[0]}</h3>
-                <ol>
-                  {Object.values(listObj)[0].map(
-                    (tasklist: string[], index: number) => (
-                      <li
-                        key={index}
-                        onClick={(e) => {
-                          const text =
-                            (e.target as HTMLElement).textContent || "";
-                          if (!list.includes(text))
-                            setList((p) => [...p, text]);
-                        }}
-                      >
-                        {tasklist}
-                      </li>
-                    )
-                  )}
-                </ol>
-              </div>
-            ))}
-            <SubList />
+          <div>
+            <div style={{ display: "flex" }}>
+              {listList.map((listObj, index) => (
+                <div key={index} style={{ margin: "30px" }}>
+                  <h3>{Object.keys(listObj)[0]}</h3>
+                  <ol>
+                    {Object.values(listObj)[0].map(
+                      (tasklist: string[], index: number) => (
+                        <li
+                          key={index}
+                          onClick={(e) => {
+                            const text =
+                              (e.target as HTMLElement).textContent || "";
+                            if (!list.includes(text))
+                              setList((p) => [...p, text]);
+                          }}
+                        >
+                          {tasklist}
+                        </li>
+                      )
+                    )}
+                  </ol>
+                </div>
+              ))}
+              <SubList />
+            </div>
+            <div>
+              <HabitCalendar />
+            </div>
           </div>
         </div>
       </header>
