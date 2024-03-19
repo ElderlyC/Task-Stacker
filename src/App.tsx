@@ -1,11 +1,13 @@
 import "./App.css";
-import MainHabits from "./Components/MainHabits";
+//import MainHabits from "./Components/MainHabits";
+import WeeklyProgress from "./Components/WeeklyProgress";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <MainHabits />
+        {/* <MainHabits /> */}
+        <WeeklyProgress />
       </header>
     </div>
   );
