@@ -9,7 +9,7 @@ type HabitTime = { habit: string; spentTime: string; goalTime: string };
 type AddingTime = { [key: string]: number };
 const WeeklyProgress = () => {
   const storedHabits = localStorage.getItem("habitTimes");
-  const [habitTimes, setHabitTimes] = useState(
+  const [habitTimes, setHabitTimes] = useState<HabitTime[]>(
     storedHabits ? JSON.parse(storedHabits) : []
   );
   const [habitName, setHabitName] = useState("");
@@ -23,7 +23,7 @@ const WeeklyProgress = () => {
     event.preventDefault();
     setHabitTimes((prev: HabitTime[]) => [
       ...prev,
-      { habit: habitName, spentTime: "0", goalTime },
+      { habit: habitName, spentTime: "0", goalTime: goalTime.toString() },
     ]);
     setHabitName("");
     setGoalTime(210);
@@ -40,6 +40,15 @@ const WeeklyProgress = () => {
         : item
     );
     setHabitTimes(updatedHabitTimes);
+  };
+
+  const handleReset = () => {
+    setHabitTimes((prev) =>
+      prev.map((habit) => ({
+        ...habit,
+        spentTime: "0",
+      }))
+    );
   };
 
   useEffect(() => {
@@ -133,6 +142,9 @@ const WeeklyProgress = () => {
           </div>
         </div>
       ))}
+      <Button variant="contained" onClick={handleReset}>
+        Reset
+      </Button>
     </div>
   );
 };
