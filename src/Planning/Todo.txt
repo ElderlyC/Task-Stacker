@@ -1,4 +1,16 @@
 Specifications
+3 formats:
+-task list
+-habit progress bars
+-continued streak (x days no Youtube)
+
+list tasks, break them up, prioritise, do them, measure progress
+
+
+-list of tasks for each category, can complete to add to a sushi stack (visual indicator)		
+--{category: 'Job Search', tasks: ['update resume','apply 10 jobs']}	
+--clone task button to have multiple 'apply 10 jobs'
+
 -what do i want to accomplish in the end
 --what are the features i need for this
 --what does it need for me to want to use it?
