@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
+import classes from "./TaskList.module.css";
 
 // list tasks, break them up, prioritise, do them, measure progress
 /// change positions (prioritise)
@@ -9,6 +10,7 @@ import { TextField, Button } from "@mui/material";
 const TaskList = () => {
   const mockList = ["Clean Room", "Study Docker", "Eat Pasta"];
   const [taskList, setList] = useState(mockList);
+  const [flashingIndex, setFlashingIndex] = useState<null | number>(null);
 
   const handleSplit = (index: number) => {
     const currentTask = taskList[index];
@@ -23,6 +25,25 @@ const TaskList = () => {
     });
   };
 
+  const handleMoveTask = (direction: string, index: number) => {
+    setFlashingIndex(direction === "up" ? index - 1 : index + 1);
+    const newList = [...taskList];
+    if (direction === "up") {
+      [newList[index], newList[index - 1]] = [
+        newList[index - 1],
+        newList[index],
+      ];
+    } else
+      [newList[index], newList[index + 1]] = [
+        newList[index + 1],
+        newList[index],
+      ];
+    setList(newList);
+    setTimeout(() => {
+      setFlashingIndex(null);
+    }, 100);
+  };
+
   return (
     <div>
       TaskList
@@ -30,7 +51,9 @@ const TaskList = () => {
         {taskList.map((task, index) => (
           <div
             key={index}
-            style={{ border: "red 2px solid", margin: "5px", padding: "5px" }}
+            className={`${classes.listItem} ${
+              index === flashingIndex ? classes.flashing : ""
+            }`}
           >
             <TextField
               value={task}
@@ -50,8 +73,18 @@ const TaskList = () => {
             >
               Delete
             </Button>
-            <Button>Up</Button>
-            <Button>Down</Button>
+            <Button
+              disabled={index === 0}
+              onClick={() => handleMoveTask("up", index)}
+            >
+              Up
+            </Button>
+            <Button
+              disabled={index === taskList.length - 1}
+              onClick={() => handleMoveTask("down", index)}
+            >
+              Down
+            </Button>
           </div>
         ))}
       </div>

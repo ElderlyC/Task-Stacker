@@ -5,6 +5,7 @@ Specifications
 -continued streak (x days no Youtube)
 
 list tasks, break them up, prioritise, do them, measure progress
+-split button takes a task then splits into 2 copies: Task 1a, Task 1b
 
 
 -list of tasks for each category, can complete to add to a sushi stack (visual indicator)		

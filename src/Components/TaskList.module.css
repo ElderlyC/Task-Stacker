@@ -1,0 +1,26 @@
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 5px solid #ccc;
+  margin-bottom: 5px;
+  transition: opacity 0.3s ease;
+}
+
+.listItem.removing {
+  opacity: 0;
+}
+
+.flashing {
+  animation: flash 0.1s 0s;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
